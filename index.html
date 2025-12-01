@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dobleng Mods - APK MOD FREE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            perspective: 1000px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out;
+            padding: 15px;
+            width: 100%;
+        }
+
+        .main-title {
+            font-size: 2.8rem;
+            color: #00ffcc;
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #00ffcc, #00ccff, #00ffcc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientMove 3s infinite linear;
+            background-size: 200% 100%;
+            padding: 10px;
+            border-radius: 15px;
+            display: inline-block;
+            border: 2px solid rgba(0, 255, 204, 0.3);
+        }
+
+        .unlock-text {
+            font-size: 1.3rem;
+            color: #ffcc00;
+            margin-top: 10px;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+
+        .mods-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+
+        .mod-card {
+            width: 100%;
+            max-width: 320px;
+            height: 480px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            margin: 0 auto;
+        }
+
+        .mod-card:hover {
+            transform: rotateY(15deg) rotateX(10deg) translateY(-10px);
+        }
+
+        .mod-card.active {
+            transform: rotateY(0) rotateX(0) translateY(-20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-front {
+            background: linear-gradient(45deg, #1a2a3a, #2d3e4f);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transform: rotateY(0deg);
+        }
+
+        .card-back {
+            background: linear-gradient(45deg, #2d3e4f, #1a2a3a);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            transform: rotateY(180deg);
+            overflow-y: auto;
+        }
+
+        .mod-icon-container {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            overflow: visible;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        /* Warna latar khusus untuk setiap logo */
+        .capcut-logo-bg {
+            background: white;
+            padding: 5px;
+        }
+        
+        .remini-logo-bg {
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            padding: 5px;
+        }
+        
+        .donghub-logo-bg {
+            background: white;
+            padding: 5px;
+        }
+        
+        .spotify-logo-bg {
+            background: #121212;
+            padding: 12px;
+        }
+
+        .mod-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        .mod-name {
+            font-size: 1.7rem;
+            margin-bottom: 8px;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .mod-info-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .mod-version {
+            font-size: 0.85rem;
+            background: rgba(0, 255, 204, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+        }
+
+        .mod-size {
+            font-size: 0.85rem;
+            background: rgba(255, 204, 0, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            color: #ffcc00;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rating-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 8px 0;
+        }
+
+        .stars {
+            color: #ffcc00;
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
+
+        .rating-value {
+            font-size: 1rem;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        .user-comment {
+            font-size: 0.8rem;
+            font-style: italic;
+            color: #aaa;
+            margin-bottom: 10px;
+            padding: 0 10px;
+            height: 40px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mod-description {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            line-height: 1.4;
+            height: 55px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .download-btn {
+            background: linear-gradient(90deg, #00ffcc, #00ccff);
+            color: #0f2027;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 90%;
+            max-width: 230px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.6);
+            background: linear-gradient(90deg, #00ccff, #00ffcc);
+        }
+
+        /* Komentar Section */
+        .comments-section {
+            width: 100%;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .comments-title {
+            font-size: 1.1rem;
+            color: #00ffcc;
+            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-left: 3px solid rgba(0, 255, 204, 0.5);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-user {
+            font-weight: bold;
+            color: #00ffcc;
+            font-size: 0.85rem;
+        }
+
+        .comment-rating {
+            color: #ffcc00;
+            font-size: 0.8rem;
+        }
+
+        .comment-text {
+            font-size: 0.8rem;
+            line-height: 1.3;
+            color: #ccc;
+        }
+
+        .comment-date {
+            font-size: 0.7rem;
+            color: #888;
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        .show-more-btn {
+            background: rgba(0, 255, 204, 0.1);
+            color: #00ffcc;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .show-more-btn:hover {
+            background: rgba(0, 255, 204, 0.2);
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+            max-width: 900px;
+            text-align: left;
+            animation: fadeIn 1.5s ease-out;
+            backdrop-filter: blur(10px);
+        }
+
+        .instructions h3 {
+            color: #00ffcc;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+        }
+
+        .warning {
+            background: rgba(255, 100, 100, 0.2);
+            border-left: 4px solid #ff6666;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .floating-animation {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 255, 204, 0.1);
+            border-radius: 50%;
+            top: 10%;
+            left: 5%;
+            animation: float 6s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .floating-animation:nth-child(2) {
+            top: 70%;
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 1s;
+            background: rgba(0, 204, 255, 0.1);
+        }
+
+        .floating-animation:nth-child(3) {
+            top: 20%;
+            left: 90%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 2s;
+        }
+        
+        .floating-animation:nth-child(4) {
+            top: 85%;
+            left: 10%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 1.5s;
+            background: rgba(255, 100, 100, 0.1);
+        }
+        
+        .floating-animation:nth-child(5) {
+            top: 15%;
+            left: 80%;
+            width: 90px;
+            height: 90px;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); }
+            50% { box-shadow: 0 8px 25px rgba(0, 255, 204, 0.3); }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .logo-glow {
+            animation: logoGlow 3s infinite;
+        }
+
+        .footer {
+            margin-top: 40px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+        }
+
+        @media (max-width: 1200px) {
+            .mods-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .mods-container {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .mod-card {
+                max-width: 350px;
+                height: 470px;
+            }
+            
+            .main-title {
+                font-size: 2.2rem;
+            }
+            
+            .mod-icon-container {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .floating-animation {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .mod-card {
+                height: 460px;
+                max-width: 320px;
+            }
+            
+            .mod-name {
+                font-size: 1.5rem;
+            }
+            
+            .mod-icon-container {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .main-title {
+                font-size: 1.8rem;
+                padding: 8px;
+            }
+            
+            .card-front, .card-back {
+                padding: 15px;
+            }
+            
+            .unlock-text {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Animasi khusus untuk logo */
+        .mod-icon-container:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-animation"></div>
+    <div class="floating-animation"></div>
+    <div class="floating-animation"></div>
+    <div class="floating-animation"></div>
+    <div class="floating-animation"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">APK MOD FREE DARI MAS FAIS DOBLENG</h1>
+            <div class="unlock-text">APK INI SUDAH DI UNLOCK OLEH MAS FAIS DOBLENG JADI MOD TANPA BERBAYAR SEPESER PUN JADI ENAK TANPA IKLAN  𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</div>
+        </div>
+        
+        <div class="mods-container">
+            <!-- CapCut Mod Card -->
+            <div class="mod-card" id="capcut-card">
+                <div class="card-front">
+                    <div class="mod-icon-container capcut-logo-bg logo-glow">
+                        <img src="https://i.ibb.co/DDD7pvJY/images.png" class="mod-logo" alt="CapCut Logo">
+                    </div>
+                    <h2 class="mod-name">CAPCUT MODS</h2>
+                    
+                    <div class="mod-info-container">
+                        <div class="mod-version">v14.9.0</div>
+                        <div class="mod-size">
+                            <i class="fas fa-download"></i> 303.74 MB
+                        </div>
+                    </div>
+                    
+                    <div class="rating-container">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="rating-value">4.5</div>
+                    </div>
+                    
+                    <div class="user-comment">
+                        "Edit video jadi mudah banget, premium beneran!"
+                    </div>
+                    
+                    <p class="mod-description">Aplikasi edit video premium dengan semua fitur unlocked. Tanpa watermark, ekspor kualitas tinggi.</p>
+                    
+                    <div class="download-btn pulse" onclick="downloadMod('capcut')">
+                        <i class="fas fa-download"></i> Download (303.74 MB)
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="comments-section">
+                        <h3 class="comments-title">Komentar Pengguna (8)</h3>
+                        
+                        <div id="capcut-comments">
+                            <!-- Komentar akan diisi oleh JavaScript -->
+                        </div>
+                        
+                        <button class="show-more-btn" onclick="showAllComments('capcut')">
+                            <i class="fas fa-comments"></i> Lihat Semua Komentar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Remini Mod Card -->
+            <div class="mod-card" id="remini-card">
+                <div class="card-front">
+                    <div class="mod-icon-container remini-logo-bg logo-glow">
+                        <img src="https://i.ibb.co/JW1WC928/images-1.jpg" class="mod-logo" alt="Remini Logo">
+                    </div>
+                    <h2 class="mod-name">REMINI MODS</h2>
+                    
+                    <div class="mod-info-container">
+                        <div class="mod-version">v3.7.1020</div>
+                        <div class="mod-size">
+                            <i class="fas fa-download"></i> 284.76 MB
+                        </div>
+                    </div>
+                    
+                    <div class="rating-container">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="rating-value">5.0</div>
+                    </div>
+                    
+                    <div class="user-comment">
+                        "Foto lama keluarga jadi seperti baru, AI-nya luar biasa!"
+                    </div>
+                    
+                    <p class="mod-description">Enhance foto dengan AI, perbaiki foto buram, warna otomatis, dan semua fitur premium unlocked.</p>
+                    
+                    <div class="download-btn pulse" onclick="downloadMod('remini')">
+                        <i class="fas fa-download"></i> Download (284.76 MB)
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="comments-section">
+                        <h3 class="comments-title">Komentar Pengguna (7)</h3>
+                        
+                        <div id="remini-comments">
+                            <!-- Komentar akan diisi oleh JavaScript -->
+                        </div>
+                        
+                        <button class="show-more-btn" onclick="showAllComments('remini')">
+                            <i class="fas fa-comments"></i> Lihat Semua Komentar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Donghub Mod Card -->
+            <div class="mod-card" id="donghub-card">
+                <div class="card-front">
+                    <div class="mod-icon-container donghub-logo-bg logo-glow">
+                        <img src="https://i.ibb.co/b5kws24j/Screenshot-2025-12-02-03-22-56-93-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" class="mod-logo" alt="Donghub Logo">
+                    </div>
+                    <h2 class="mod-name">DONGHUB MODS</h2>
+                    
+                    <div class="mod-info-container">
+                        <div class="mod-version">v5.4 MOD</div>
+                        <div class="mod-size">
+                            <i class="fas fa-download"></i> 89.30 MB
+                        </div>
+                    </div>
+                    
+                    <div class="rating-container">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="rating-value">4.0</div>
+                    </div>
+                    
+                    <div class="user-comment">
+                        "Film lengkap semua ada, streaming lancar tanpa buffering!"
+                    </div>
+                    
+                    <p class="mod-description">Aplikasi streaming film & series dengan koleksi lengkap. Tanpa iklan, kualitas HD.</p>
+                    
+                    <div class="download-btn pulse" onclick="downloadMod('donghub')">
+                        <i class="fas fa-download"></i> Download (89.30 MB)
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="comments-section">
+                        <h3 class="comments-title">Komentar Pengguna (6)</h3>
+                        
+                        <div id="donghub-comments">
+                            <!-- Komentar akan diisi oleh JavaScript -->
+                        </div>
+                        
+                        <button class="show-more-btn" onclick="showAllComments('donghub')">
+                            <i class="fas fa-comments"></i> Lihat Semua Komentar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Spotify Mod Card -->
+            <div class="mod-card" id="spotify-card">
+                <div class="card-front">
+                    <div class="mod-icon-container spotify-logo-bg logo-glow">
+                        <img src="https://i.ibb.co/J9MRVVs/Screenshot-2025-12-02-03-25-59-05-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" class="mod-logo" alt="Spotify Logo">
+                    </div>
+                    <h2 class="mod-name">SPOTIFY MODS</h2>
+                    
+                    <div class="mod-info-container">
+                        <div class="mod-version">v19.10.83.63</div>
+                        <div class="mod-size">
+                            <i class="fas fa-download"></i> 95.60 MB
+                        </div>
+                    </div>
+                    
+                    <div class="rating-container">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="rating-value">3.5</div>
+                    </div>
+                    
+                    <div class="user-comment">
+                        "Spotify premium gratis, download lagu buat offline mantap!"
+                    </div>
+                    
+                    <p class="mod-description">Aplikasi musik premium dengan semua fitur unlocked. Dengarkan musik tanpa iklan, download offline.</p>
+                    
+                    <div class="download-btn pulse" onclick="downloadMod('spotify')">
+                        <i class="fas fa-download"></i> Download (95.60 MB)
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="comments-section">
+                        <h3 class="comments-title">Komentar Pengguna (5)</h3>
+                        
+                        <div id="spotify-comments">
+                            <!-- Komentar akan diisi oleh JavaScript -->
+                        </div>
+                        
+                        <button class="show-more-btn" onclick="showAllComments('spotify')">
+                            <i class="fas fa-comments"></i> Lihat Semua Komentar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> Cara Download & Install</h3>
+            <ol>
+                <li>Klik tombol "Download Mod" pada kartu aplikasi yang diinginkan</li>
+                <li>Tunggu hingga browser terbuka dengan halaman download</li>
+                <li>Download file APK yang disediakan</li>
+                <li>Buka file APK setelah download selesai</li>
+                <li>Jika muncul peringatan "Install blocked", buka pengaturan dan izinkan instalasi dari sumber tidak dikenal</li>
+                <li>Ikuti proses instalasi seperti biasa</li>
+                <li>Buka aplikasi dan nikmati fitur premiumnya!</li>
+            </ol>
+            
+            <div class="warning">
+                <strong><i class="fas fa-exclamation-triangle"></i> PERHATIAN:</strong> Pastikan untuk menonaktifkan Play Protect di Google Play Store sebelum menginstal mod APK untuk menghindari konflik. Hanya gunakan untuk konten yang legal.
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Dobleng Mods &copy; 2023-2025 | Hanya untuk penggunaan pribadi | Semua merek dagang adalah hak milik pemiliknya</p>
+            <p>Apk Di Unlock Oleh Mas Fais Dobleng | Update terakhir: 12 Desember 2023</p>
+        </div>
+    </div>
+
+    <script>
+        // Link download (tidak terlihat langsung di halaman)
+        const downloadLinks = {
+            capcut: "https://www.mediafire.com/file/eytml7m7bdaomqc/CapCut_14.9.0_14901600_1e6df4.apk/file",
+            remini: "https://www.mediafire.com/file/srdhx2bw04aroql/Remini_v3.7.1020.202514479_Md.apk/file",
+            donghub: "https://www.mediafire.com/file/cz88oebdrqh46a0/Donghub+5.4+MOD+enc+(SFILE.MOBI).apk/file",
+            spotify: "https://www.mediafire.com/file/wtmy7l20daqtxgo/Spotify_X_19.10.83.63_1021910681_74a4e9.apk/file"
+        };
+
+        // Data ukuran file untuk setiap aplikasi
+        const fileSizes = {
+            capcut: "303.74 MB",
+            remini: "107.50 MB",
+            donghub: "89.30 MB",
+            spotify: "95.60 MB"
+        };
+
+        // Data nama pengguna acak
+        const userNames = [
+            "Budi Santoso", "Sari Indah", "Rizky Pratama", "Dewi Lestari", "Ahmad Fauzi",
+            "Maya Sari", "Hendra Wijaya", "Linda Hartono", "Fajar Nugroho", "Rina Melati",
+            "Agus Setiawan", "Putri Ayu", "Dimas Aditya", "Nina Permata", "Eko Prasetyo",
+            "Wulan Sari", "Rudi Hartono", "Ani Susanti", "Bayu Kurniawan", "Mira Dewi",
+            "Tono Wijaya", "Siska Amelia", "Joko Susilo", "Diana Putri", "Rangga Saputra"
+        ];
+
+        // Data komentar untuk setiap aplikasi
+        const commentsData = {
+            capcut: [
+                { user: "Budi Santoso", rating: 5, comment: "Edit video jadi mudah banget! Fitur premium semua terbuka.", date: "2 Des 2023" },
+                { user: "Sari Indah", rating: 4, comment: "Template-nya keren semua, watermark hilang sempurna.", date: "1 Des 2023" },
+                { user: "Rizky Pratama", rating: 5, comment: "Export 4K lancar, ga ada lag. Recommended banget!", date: "30 Nov 2023" },
+                { user: "Dewi Lestari", rating: 5, comment: "Musik premium gratis semua, bikin konten makin bagus.", date: "29 Nov 2023" },
+                { user: "Ahmad Fauzi", rating: 4, comment: "Transisi efeknya lengkap, bikin video professional.", date: "28 Nov 2023" },
+                { user: "Maya Sari", rating: 5, comment: "Aplikasi edit video terbaik yang pernah saya coba!", date: "27 Nov 2023" },
+                { user: "Hendra Wijaya", rating: 4, comment: "Tanpa watermark, ekspor kualitas tinggi mantap.", date: "26 Nov 2023" },
+                { user: "Linda Hartono", rating: 5, comment: "Fitur premium semua gratis, ga perlu bayar lagi.", date: "25 Nov 2023" }
+            ],
+            remini: [
+                { user: "Fajar Nugroho", rating: 5, comment: "Foto lama keluarga jadi seperti baru, emosi banget!", date: "2 Des 2023" },
+                { user: "Rina Melati", rating: 5, comment: "AI-nya luar biasa! Foto buram jadi jelas sekali.", date: "1 Des 2023" },
+                { user: "Agus Setiawan", rating: 5, comment: "Tanpa batas enhance, bisa perbaiki semua foto koleksi.", date: "30 Nov 2023" },
+                { user: "Putri Ayu", rating: 5, comment: "Warna otomatis pas banget, hasilnya natural.", date: "29 Nov 2023" },
+                { user: "Dimas Aditya", rating: 5, comment: "Ajaib! Foto tahun 90an jadi seperti difoto sekarang.", date: "28 Nov 2023" },
+                { user: "Nina Permata", rating: 5, comment: "Export kualitas tinggi, ga ada kompresi.", date: "27 Nov 2023" },
+                { user: "Eko Prasetyo", rating: 5, comment: "Fitur premium semua terbuka, ga perlu subscription.", date: "26 Nov 2023" }
+            ],
+            donghub: [
+                { user: "Wulan Sari", rating: 4, comment: "Film lengkap semua ada, dari yang lama sampai baru.", date: "2 Des 2023" },
+                { user: "Rudi Hartono", rating: 4, comment: "Streaming lancar tanpa buffering, kualitas HD mantap.", date: "1 Des 2023" },
+                { user: "Ani Susanti", rating: 5, comment: "Tanpa iklan sama sekali, nonton jadi nyaman banget.", date: "30 Nov 2023" },
+                { user: "Bayu Kurniawan", rating: 4, comment: "Bisa download untuk offline, praktis banget.", date: "29 Nov 2023" },
+                { user: "Mira Dewi", rating: 4, comment: "Subtitle lengkap, nonton film luar jadi mudah.", date: "28 Nov 2023" },
+                { user: "Tono Wijaya", rating: 3, comment: "Koleksi series-nya lengkap, update terbaru selalu ada.", date: "27 Nov 2023" }
+            ],
+            spotify: [
+                { user: "Siska Amelia", rating: 4, comment: "Ga ada iklan sama sekali, musik play terus.", date: "2 Des 2023" },
+                { user: "Joko Susilo", rating: 3, comment: "Bisa download lagu buat offline, hemat kuota.", date: "1 Des 2023" },
+                { user: "Diana Putri", rating: 4, comment: "Kualitas audio 320kbps, suaranya jernih banget.", date: "30 Nov 2023" },
+                { user: "Rangga Saputra", rating: 3, comment: "Skip tak terbatas, bisa pilih lagu favorit terus.", date: "29 Nov 2023" },
+                { user: "Budi Santoso", rating: 4, comment: "Mod ini beneran premium, semua fitur terbuka.", date: "28 Nov 2023" }
+            ]
+        };
+
+        // Fungsi untuk menampilkan bintang rating
+        function renderStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        // Fungsi untuk menampilkan komentar
+        function renderComments(appId) {
+            const comments = commentsData[appId];
+            const container = document.getElementById(`${appId}-comments`);
+            
+            if (!container || !comments) return;
+            
+            let html = '';
+            
+            // Tampilkan 3 komentar pertama
+            const displayCount = Math.min(3, comments.length);
+            for (let i = 0; i < displayCount; i++) {
+                const comment = comments[i];
+                html += `
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <div class="comment-user">${comment.user}</div>
+                            <div class="comment-rating">${renderStars(comment.rating)}</div>
+                        </div>
+                        <div class="comment-text">"${comment.comment}"</div>
+                        <div class="comment-date">${comment.date}</div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // Fungsi untuk menampilkan semua komentar
+        function showAllComments(appId) {
+            const comments = commentsData[appId];
+            const container = document.getElementById(`${appId}-comments`);
+            
+            if (!container || !comments) return;
+            
+            let html = '';
+            
+            for (let i = 0; i < comments.length; i++) {
+                const comment = comments[i];
+                html += `
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <div class="comment-user">${comment.user}</div>
+                            <div class="comment-rating">${renderStars(comment.rating)}</div>
+                        </div>
+                        <div class="comment-text">"${comment.comment}"</div>
+                        <div class="comment-date">${comment.date}</div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+            
+            // Ubah tombol
+            const button = container.nextElementSibling;
+            if (button) {
+                button.innerHTML = '<i class="fas fa-check"></i> Semua Komentar Ditampilkan';
+                button.style.background = 'rgba(0, 255, 204, 0.3)';
+                button.disabled = true;
+                
+                // Reset setelah 3 detik
+                setTimeout(() => {
+                    renderComments(appId);
+                    button.innerHTML = '<i class="fas fa-comments"></i> Lihat Semua Komentar';
+                    button.style.background = 'rgba(0, 255, 204, 0.1)';
+                    button.disabled = false;
+                }, 3000);
+            }
+        }
+
+        // Fungsi untuk membuka link download di tab baru (Chrome/browser default)
+        function downloadMod(modName) {
+            if (downloadLinks[modName]) {
+                // Membuka link di tab baru
+                window.open(downloadLinks[modName], '_blank');
+                
+                // Tampilkan pesan dengan ukuran file
+                alert(`Download ${modName.toUpperCase()} (${fileSizes[modName]}) akan dibuka di browser. Pastikan koneksi internet stabil untuk mengunduh file besar.`);
+                
+                // Efek visual pada kartu yang diklik
+                const card = document.getElementById(`${modName}-card`);
+                card.classList.add('active');
+                setTimeout(() => {
+                    card.classList.remove('active');
+                }, 1000);
+                
+                // Log aktivitas download (hanya simulasi)
+                console.log(`User mengunduh ${modName} mod (${fileSizes[modName]}) pada ${new Date().toLocaleString()}`);
+            }
+        }
+
+        // Efek 3D pada kartu saat hover
+        const modCards = document.querySelectorAll('.mod-card');
+        
+        modCards.forEach(card => {
+            // Efek saat mouse bergerak di atas kartu
+            card.addEventListener('mousemove', (e) => {
+                const cardRect = card.getBoundingClientRect();
+                const cardCenterX = cardRect.left + cardRect.width / 2;
+                const cardCenterY = cardRect.top + cardRect.height / 2;
+                
+                const mouseX = e.clientX - cardCenterX;
+                const mouseY = e.clientY - cardCenterY;
+                
+                // Hitung rotasi berdasarkan posisi mouse
+                const rotateY = (mouseX / cardRect.width) * 20;
+                const rotateX = -(mouseY / cardRect.height) * 20;
+                
+                // Terapkan transformasi
+                card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateY(-10px)`;
+            });
+            
+            // Reset saat mouse keluar dari kartu
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateY(0) rotateX(0) translateY(0)';
+            });
+            
+            // Tambahkan efek klik (flip card)
+            card.addEventListener('click', (e) => {
+                // Jangan flip jika yang diklik adalah tombol download
+                if (e.target.closest('.download-btn')) {
+                    return;
+                }
+                
+                // Toggle flip kartu
+                const currentTransform = card.style.transform;
+                const isFlipped = currentTransform.includes('rotateY(180deg)');
+                
+                if (isFlipped) {
+                    card.style.transform = 'rotateY(0) rotateX(0) translateY(-10px)';
+                } else {
+                    card.style.transform = 'rotateY(180deg) rotateX(0) translateY(-10px)';
+                }
+            });
+        });
+
+        // Animasi masuk untuk elemen
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render komentar untuk setiap aplikasi
+            Object.keys(commentsData).forEach(appId => {
+                renderComments(appId);
+            });
+            
+            // Update tombol download dengan ukuran file
+            document.querySelectorAll('.download-btn').forEach(btn => {
+                const modName = btn.closest('.mod-card').id.replace('-card', '');
+                if (fileSizes[modName]) {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = `<i class="fas fa-download"></i> Download (${fileSizes[modName]})`;
+                }
+            });
+            
+            const elements = document.querySelectorAll('.header, .mod-card, .instructions');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+            
+            // Preload gambar logo untuk menghindari delay
+            const logoUrls = [
+                'https://i.ibb.co/DDD7pvJY/images.png',
+                'https://i.ibb.co/JW1WC928/images-1.jpg',
+                'https://i.ibb.co/b5kws24j/Screenshot-2025-12-02-03-22-56-93-40deb401b9ffe8e1df2f1cc5ba480b12.jpg',
+                'https://i.ibb.co/J9MRVVs/Screenshot-2025-12-02-03-25-59-05-40deb401b9ffe8e1df2f1cc5ba480b12.jpg'
+            ];
+            
+            logoUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+            
+            // Tambahkan efek hover pada logo container
+            const logoContainers = document.querySelectorAll('.mod-icon-container');
+            logoContainers.forEach(container => {
+                container.addEventListener('mouseenter', () => {
+                    container.style.transform = 'scale(1.05)';
+                    container.style.transition = 'transform 0.3s ease';
+                });
+                
+                container.addEventListener('mouseleave', () => {
+                    container.style.transform = 'scale(1)';
+                });
+            });
+        });
+        
+        // Efek halaman saat dimuat
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
